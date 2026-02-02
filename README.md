@@ -68,6 +68,3 @@ npm run build
 npm start
 ```
 
-## 📝 Performance Analysis Report
-
-For a deeper dive into the methodology used to compare Vite and Next.js, including Lighthouse metrics and stress-test details, refer to the [Performance Comparison Guide](./performance-comparison.md) (if included in repo) or the project documentation.
