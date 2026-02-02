@@ -2,6 +2,10 @@
 
 A professional, high-performance Admin Dashboard migrated from Vite to **Next.js 14+ (App Router)**. This project demonstrates significant performance optimizations when handling large-scale datasets using Server-Side Rendering (SSR) and modern React patterns.
 
+## 🚀 Vercel 
+[]
+
+
 ## 🚀 Overview
 
 This dashboard was originally built with Vite (Client-Side Rendering) and subsequently migrated to Next.js to address performance bottlenecks when rendering large volumes of data. The project features a full suite of interactive charts, data grids, and management tools, all optimized for speed and responsiveness.

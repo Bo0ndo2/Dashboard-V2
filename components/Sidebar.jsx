@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
@@ -19,14 +19,16 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 
-const Item = ({ title, to, icon, selected, setSelected }) => {
+const Item = ({ title, to, icon }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const pathname = usePathname();
+  const isActive = pathname === to;
+
   return (
     <MenuItem
-      active={selected === title}
+      active={isActive}
       style={{ color: colors.grey[100] }}
-      onClick={() => setSelected(title)}
       icon={icon}
       component={<Link href={to} />}
     >
@@ -39,22 +41,6 @@ const MySidebar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [selected, setSelected] = useState("Dashboard");
-  const pathname = usePathname();
-
-  useEffect(() => {
-    if (pathname === "/") setSelected("Dashboard");
-    else if (pathname === "/team") setSelected("Manage Team");
-    else if (pathname === "/contacts") setSelected("Contacts Information");
-    else if (pathname === "/invoices") setSelected("Invoices Balances");
-    else if (pathname === "/form") setSelected("Profile Form");
-    else if (pathname === "/calendar") setSelected("Calendar");
-    else if (pathname === "/faq") setSelected("FAQ Page");
-    else if (pathname === "/bar") setSelected("Bar Chart");
-    else if (pathname === "/pie") setSelected("Pie Chart");
-    else if (pathname === "/line") setSelected("Line Chart");
-    else if (pathname === "/geography") setSelected("Geography Chart");
-  }, [pathname]);
 
   return (
     <Box
@@ -69,7 +55,7 @@ const MySidebar = () => {
         "& .ps-active": {
           color: "#6870fa !important",
         },
-        height: "100%", // Changed from 100vh to fit layout
+        height: "100%",
       }}
     >
       <Sidebar
@@ -132,13 +118,7 @@ const MySidebar = () => {
           )}
 
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
-            <Item
-              title="Dashboard"
-              to="/"
-              icon={<HomeOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+            <Item title="Dashboard" to="/" icon={<HomeOutlinedIcon />} />
 
             <Typography
               variant="h6"
@@ -151,22 +131,16 @@ const MySidebar = () => {
               title="Manage Team"
               to="/team"
               icon={<PeopleOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
             />
             <Item
               title="Contacts Information"
               to="/contacts"
               icon={<ContactsOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
             />
             <Item
               title="Invoices Balances"
               to="/invoices"
               icon={<ReceiptOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
             />
 
             <Typography
@@ -180,22 +154,16 @@ const MySidebar = () => {
               title="Profile Form"
               to="/form"
               icon={<PersonOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
             />
             <Item
               title="Calendar"
               to="/calendar"
               icon={<CalendarTodayOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
             />
             <Item
               title="FAQ Page"
               to="/faq"
               icon={<HelpOutlineOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
             />
 
             <Typography
@@ -205,33 +173,21 @@ const MySidebar = () => {
             >
               Charts
             </Typography>
-            <Item
-              title="Bar Chart"
-              to="/bar"
-              icon={<BarChartOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+            <Item title="Bar Chart" to="/bar" icon={<BarChartOutlinedIcon />} />
             <Item
               title="Pie Chart"
               to="/pie"
               icon={<PieChartOutlineOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
             />
             <Item
               title="Line Chart"
               to="/line"
               icon={<TimelineOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
             />
             <Item
               title="Geography Chart"
               to="/geography"
               icon={<MapOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
             />
           </Box>
         </Menu>
