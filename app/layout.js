@@ -1,5 +1,5 @@
 import "./globals.css";
-import ClientLayout from "./ClientLayout";
+import ClientLayout from "./ClientLayoutNoSSR";
 import { Source_Sans_3 } from "next/font/google";
 
 const sourceSans = Source_Sans_3({
